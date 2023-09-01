@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sugestões - Colégio Paulicéia</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+</head>
+<body>
+    <center><img src="logo.png" width="20%"></img></center>
+    <h1>Envie uma sugestão</h1>
+    <form id="feedbackForm" action="/submit-feedback" method="post">
+        <p>Você pode enviar somente <b>1</b> feedback por hora.<p>
+        <textarea id="feedbackText" name="feedback" rows="4" cols="50" placeholder="Sua sugestão"></textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+        const form = document.getElementById('feedbackForm');
+        const feedbackText = document.getElementById('feedbackText');
+        const confirmationDiv = document.getElementById('confirmation');
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const feedbackTimestamps = localStorage.getItem('feedbackTimestamps');
+            const now = Date.now();
+            const oneHour = 60 * 60 * 1000;
+
+            if (!feedbackTimestamps || now - feedbackTimestamps >= oneHour) {
+                if (feedbackText.value.trim() !== '') {
+                    localStorage.setItem('feedbackTimestamps', now);
+                    form.submit();
+                    alert('Obrigado por enviar a sua sugestão. Você só pode enviar um feedback por hora.');
+                } else {
+                    alert('Por favor, insira o conteúdo do feedback.');
+                }
+            } else {
+                alert('Você só pode enviar um feedback por hora.');
+            }
+        });
+    </script>
+</body>
+</html>

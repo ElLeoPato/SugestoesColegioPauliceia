@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sugestões Admin</title>
+    <style>
+        body, h1, h2, ul, li, form {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        h1 {
+            padding: 20px 0;
+            color: black;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 20px;
+            color: black;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        form {
+            display: inline;
+            margin-left: 10px;
+        }
+
+        button {
+            background-color: #FF4136;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #FF1F00;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .feedback-content, .expanded-content {
+            max-width: 200px;
+            overflow-wrap: break-word;
+        }
+
+        .copy-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .copy-button:hover {
+            background-color: #45a049;
+        }
+
+        .download-link {
+            color: #45a049;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .download-link:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin</h1>
+    <% if (authenticated) { %>
+        <h2>Sugestões:</h2><br>
+        <ul>
+            <% feedbacks.forEach(function(feedback, index) { %>
+                <li>
+                    <div id="feedback_<%= index %>" class="feedback-content">
+                        <%= feedback.content %>
+                    </div>
+                    <form action="/delete-feedback" method="post">
+                        <input type="hidden" name="index" value="<%= index %>">
+                        <button type="submit">X</button>
+                    </form>
+                    <button class="copy-button" onclick="copyText('<%= feedback.content %>')">Copie</button>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+    <form action="/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+    
+    <a href="/download-suggestions" class="download-link">Download de todas as sugestões</a>
+
+    <script>
+        function copyText(text) {
+            var textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+
+            textarea.select();
+            document.execCommand('copy');
+
+            document.body.removeChild(textarea);
+        }
+    </script>
+</body>
+</html>
