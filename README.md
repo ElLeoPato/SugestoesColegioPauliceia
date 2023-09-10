@@ -5,7 +5,7 @@ Este é um projeto de aplicativo de feedback simples usando o framework Express.
 
 ## Instalação
 ```
-git clone https://github.com/ElLeoPato/SugestoesColegioPauliceia.git
+git clone https://github.com/ElLowLeo/SugestoesColegioPauliceia.git
 cd SugestoesColegioPauliceia
 npm install
 npm start
@@ -27,7 +27,7 @@ O servidor começará a rodar na porta indicada na sessão do terminal.
 ### Após levantar o servidor
 Você deve primeiro fazer login para que seja possível alterar a senha. Não mantenha a senha padrão, preserve a sua segurança.
 ### Estou com problemas
-Crie uma [issue](https://github.com/ElLeoPato/SugestoesColegioPauliceia/issues), quando puder irei te ajudar.
+Crie uma [issue](https://github.com/ElLowLeo/SugestoesColegioPauliceia/issues), quando puder irei te ajudar.
 
 # LICENÇA:
-Código distribuido na licença [ISC](https://github.com/ElLeoPato/SugestoesColegioPauliceia/blob/main/LICENSE)
+Código distribuido na licença [ISC](https://github.com/ElLowLeo/SugestoesColegioPauliceia/blob/main/LICENSE)
